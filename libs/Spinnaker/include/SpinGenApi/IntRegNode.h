@@ -1,5 +1,5 @@
 //=============================================================================
-// Copyright © 2017 FLIR Integrated Imaging Solutions, Inc. All Rights Reserved.
+// Copyright (c) 2001-2019 FLIR Systems, Inc. All Rights Reserved.
 //
 // This software is the confidential and proprietary information of FLIR
 // Integrated Imaging Solutions, Inc. ("Confidential Information"). You
@@ -28,31 +28,33 @@
 #include "IntegerNode.h"
 #include "RegisterNode.h"
 
-#pragma warning ( push )
-#pragma warning( disable : 4250 ) // C4250 - 'class1' : inherits 'class2::member' via dominance
-#pragma warning ( disable : 4251 ) // XXX needs to have dll-interface to be used by clients of class YYY
-#pragma warning( disable: 4275 ) // non dll-interface structXXX used as base
+#ifdef _WIN32
+#pragma warning(push)
+#pragma warning(disable : 4250) // C4250 - 'class1' : inherits 'class2::member' via dominance
+#pragma warning(disable : 4251) // XXX needs to have dll-interface to be used by clients of class YYY
+#pragma warning(disable : 4275) // non dll-interface structXXX used as base
+#endif
 
 namespace Spinnaker
 {
     namespace GenApi
     {
         /**
-        *  @defgroup SpinnakerGenApiClasses Spinnaker GenApi Classes
-        */
+         *  @defgroup SpinnakerGenApiClasses Spinnaker GenApi Classes
+         */
         /*@{*/
 
         /**
-        *  @defgroup IntRegNode_h IntRegNode Class
-        */
+         *  @defgroup IntRegNode_h IntRegNode Class
+         */
         /*@{*/
 
         /**
-        * @brief Interface for string properties
-        */
+         * @brief Interface for string properties
+         */
         class SPINNAKER_API IntRegNode : virtual public IntegerNode, virtual public RegisterNode
         {
-        public:
+          public:
             struct NodeImpl;
             IntRegNode();
 
@@ -61,14 +63,18 @@ namespace Spinnaker
             virtual ~IntRegNode();
 
             /**
-            * overload SetReference for Value
-            */
+             * overload SetReference for Value
+             */
             virtual void SetReference(INode* pBase);
         };
 
         /*@}*/
         /*@}*/
-    }
-}
+    } // namespace GenApi
+} // namespace Spinnaker
+
+#ifdef _WIN32
+#pragma warning(pop)
+#endif
 
 #endif // SPINNAKER_GENAPI_INTREGNODE_H

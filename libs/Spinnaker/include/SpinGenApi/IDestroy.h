@@ -1,5 +1,5 @@
 //=============================================================================
-// Copyright © 2017 FLIR Integrated Imaging Solutions, Inc. All Rights Reserved.
+// Copyright (c) 2001-2019 FLIR Systems, Inc. All Rights Reserved.
 //
 // This software is the confidential and proprietary information of FLIR
 // Integrated Imaging Solutions, Inc. ("Confidential Information"). You
@@ -20,21 +20,23 @@
 
 #include "SpinnakerPlatform.h"
 
-#pragma warning ( push )
-#pragma warning ( disable : 4251 ) // XXX needs to have dll-interface to be used by clients of class YYY
+#ifdef _WIN32
+#pragma warning(push)
+#pragma warning(disable : 4251) // XXX needs to have dll-interface to be used by clients of class YYY
+#endif
 
 namespace Spinnaker
 {
     namespace GenApi
     {
         /**
-        *  @defgroup SpinnakerGenApiInterfaces Spinnaker GenApi Interfaces
-        */
+         *  @defgroup SpinnakerGenApiInterfaces Spinnaker GenApi Interfaces
+         */
         /*@{*/
 
         /**
-        *  @defgroup IDestroy_h IDestroy Interface
-        */
+         *  @defgroup IDestroy_h IDestroy Interface
+         */
         /*@{*/
 
         //*************************************************************
@@ -42,21 +44,23 @@ namespace Spinnaker
         //*************************************************************
 
         /**
-        * @brief Interface to destroy an object
-        */
+         * @brief Interface to destroy an object
+         */
         interface SPINNAKER_API_ABSTRACT IDestroy
         {
             /**
-            * Makes the object to destro itself
-            */
+             * Makes the object to destro itself
+             */
             virtual void Destroy() = 0;
         };
 
         /*@}*/
         /*@}*/
-    }
-}
+    } // namespace GenApi
+} // namespace Spinnaker
 
-#pragma warning ( pop )
+#ifdef _WIN32
+#pragma warning(pop)
+#endif
 
 #endif // SPINNAKER_GENAPI_IDESTROY_H

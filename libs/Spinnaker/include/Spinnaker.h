@@ -1,5 +1,5 @@
 //=============================================================================
-// Copyright © 2017 FLIR Integrated Imaging Solutions, Inc. All Rights Reserved.
+// Copyright (c) 2001-2019 FLIR Systems, Inc. All Rights Reserved.
 //
 // This software is the confidential and proprietary information of FLIR
 // Integrated Imaging Solutions, Inc. ("Confidential Information"). You
@@ -19,8 +19,8 @@
 #define PGR_SPINNAKER_H
 
 /**
-*  @defgroup SpinnakerHeaders Spinnaker Headers
-*/
+ *  @defgroup SpinnakerHeaders Spinnaker Headers
+ */
 
 /*@{*/
 
@@ -49,9 +49,9 @@
  */
 #include "SpinnakerDefs.h"
 
-/** 
-*  Spinnaker GenICam Wrapper Includes
-*/
+/**
+ *  Spinnaker GenICam Wrapper Includes
+ */
 #include "SpinGenApi/GCBase.h"
 
 #include "SpinGenApi/SpinnakerGenApi.h"

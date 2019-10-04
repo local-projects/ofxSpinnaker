@@ -1,5 +1,5 @@
 //=============================================================================
-// Copyright © 2017 FLIR Integrated Imaging Solutions, Inc. All Rights Reserved.
+// Copyright (c) 2001-2019 FLIR Systems, Inc. All Rights Reserved.
 //
 // This software is the confidential and proprietary information of FLIR
 // Integrated Imaging Solutions, Inc. ("Confidential Information"). You
@@ -17,8 +17,8 @@
    
 /* Auto-generated file. Do not modify. */
 
-#ifndef PGR_SPINNAKER_CHUNKDATA_H
-#define PGR_SPINNAKER_CHUNKDATA_H
+#ifndef FLIR_SPINNAKER_CHUNKDATA_H
+#define FLIR_SPINNAKER_CHUNKDATA_H
 
 #include "Interface/IChunkData.h"
 
@@ -253,6 +253,24 @@ namespace Spinnaker
          */
         float64_t GetScan3dCoordinateReferenceValue() const;
 
+        /**
+         * Description: Returns the chunk data inference result.
+         * Visibility: Expert
+         */
+        int64_t GetInferenceResult() const;
+
+        /**
+         * Description: Returns the chunk data inference confidence percentage.
+         * Visibility: Expert
+         */
+        float64_t GetInferenceConfidence() const;
+
+        /**
+         * Description: Returns the chunk inference bounding box result data.
+         * Visibility: Expert
+         */
+        InferenceBoundingBoxResult GetInferenceBoundingBoxResult() const;
+
     private:
         float64_t m_blackLevel;
         int64_t m_frameID;
@@ -288,6 +306,9 @@ namespace Spinnaker
         float64_t m_scan3dAxisMax;
         float64_t m_scan3dTransformValue;
         float64_t m_scan3dCoordinateReferenceValue;
+        int64_t m_inferenceResult;
+        float64_t m_inferenceConfidence;
+        InferenceBoundingBoxResult m_inferenceBoundingBoxResult;
 
     };
     /*@}*/
@@ -295,4 +316,4 @@ namespace Spinnaker
     /*@}*/
 
 }
-#endif // PGR_SPINNAKER_CHUNKDATA_H
+#endif // FLIR_SPINNAKER_CHUNKDATA_H

@@ -1,5 +1,5 @@
 //=============================================================================
-// Copyright © 2017 FLIR Integrated Imaging Solutions, Inc. All Rights Reserved.
+// Copyright (c) 2001-2019 FLIR Systems, Inc. All Rights Reserved.
 //
 // This software is the confidential and proprietary information of FLIR
 // Integrated Imaging Solutions, Inc. ("Confidential Information"). You
@@ -94,10 +94,13 @@ namespace Spinnaker
 
 	enum DeviceAccessStatusEnum	/*!< Gets the access status the transport layer Producer has on the device.*/
 	{
-		DeviceAccessStatus_Unknown,	/*!< Unknown status*/
+		DeviceAccessStatus_Unknown,	/*!< Not known to producer.*/
 		DeviceAccessStatus_ReadWrite,	/*!< Full access*/
 		DeviceAccessStatus_ReadOnly,	/*!< Read-only access*/
-		DeviceAccessStatus_NoAccess,	/*!< Non-available devices*/
+		DeviceAccessStatus_NoAccess,	/*!< Not available to connect*/
+		DeviceAccessStatus_Busy,	/*!< The device is already opened by another entity*/
+		DeviceAccessStatus_OpenReadWrite,	/*!< Open in Read/Write mode by this GenTL host*/
+		DeviceAccessStatus_OpenReadOnly,	/*!< Open in Read access mode by this GenTL host*/
 		NUMDEVICEACCESSSTATUS
 	};
 
@@ -146,6 +149,14 @@ namespace Spinnaker
 		POEStatus_PowerOff,	/*!< Power is Off*/
 		POEStatus_PowerOn,	/*!< Power is On*/
 		NUMPOESTATUS
+	};
+
+	enum FilterDriverStatusEnum	/*!< Reports whether FLIR Light Weight Filter Driver is enabled or not.*/
+	{
+		FilterDriverStatus_NotSupported,	/*!< Not Supported*/
+		FilterDriverStatus_Disabled,	/*!< FLIR Light Weight Filter Driver is disabled*/
+		FilterDriverStatus_Enabled,	/*!< FLIR Light Weight Filter Driver is enabled*/
+		NUMFILTERDRIVERSTATUS
 	};
 
 	/*@}*/

@@ -1,5 +1,5 @@
 //=============================================================================
-// Copyright © 2018 FLIR Integrated Imaging Solutions, Inc. All Rights Reserved.
+// Copyright (c) 2001-2019 FLIR Systems, Inc. All Rights Reserved.
 //
 // This software is the confidential and proprietary information of FLIR
 // Integrated Imaging Solutions, Inc. ("Confidential Information"). You
@@ -27,23 +27,22 @@ namespace Spinnaker
     namespace Video
     {
         /**
-        *  @defgroup SpinnakerClasses Spinnaker Classes
-        */
+         *  @defgroup SpinnakerClasses Spinnaker Classes
+         */
         /*@{*/
 
         /**
-        *  @defgroup SpinVideo_h Spinnaker Video Class
-        */
+         *  @defgroup SpinVideo_h Spinnaker Video Class
+         */
         /*@{*/
 
         /**
-        * @brief Provides the functionality for the user to record images to an AVI/MP4 file.
-        */
+         * @brief Provides the functionality for the user to record images to an AVI/MP4 file.
+         */
 
         class SPINNAKER_API SpinVideo
         {
-        public:
-
+          public:
             /**
              * Default constructor.
              */
@@ -65,9 +64,7 @@ namespace Spinnaker
              * @see Close()
              *
              */
-            virtual void Open(
-                const char* pFileName,
-                AVIOption &  pOption);
+            virtual void Open(const char* pFileName, AVIOption& pOption);
 
             /**
              * Open an MJPEG video file in preparation for writing Images to disk.
@@ -81,30 +78,26 @@ namespace Spinnaker
              * @see MJPGOption
              *
              */
-            virtual void Open(
-                const char* pFileName,
-                MJPGOption &  pOption);
-
+            virtual void Open(const char* pFileName, MJPGOption& pOption);
 
             /**
-            * Open an H264 MP4 video file in preparation for writing Images to disk.
-            * The size of MP4 files is limited to 2GB. The filenames are
-            * automatically generated using the filename specified.
-            *
-            * @param pFileName The filename of the MP4 video file.
-            * @param pOption H264 options to apply to the MP4 video file.
-            *
-            * @see Close()
-            * @see H264Option
-            *
-            */
-            virtual void Open(
-                const char* pFileName,
-                H264Option &  pOption);
-
+             * Open an H264 MP4 video file in preparation for writing Images to disk.
+             * The size of MP4 files is limited to 2GB. The filenames are
+             * automatically generated using the filename specified.
+             *
+             * @param pFileName The filename of the MP4 video file.
+             * @param pOption H264 options to apply to the MP4 video file.
+             *
+             * @see Close()
+             * @see H264Option
+             *
+             */
+            virtual void Open(const char* pFileName, H264Option& pOption);
 
             /**
              * Append an image to the video file.
+             * When using the H264 encoder, several images are required to be appended
+             * before the encoder is able to output the first encoded frame.
              *
              * @param pImage The image to append.
              *
@@ -113,8 +106,12 @@ namespace Spinnaker
 
             /**
              * Close the video file.
+             * This function will throw an exception when the H264 encoder was unable
+             * to output any encoded frames, in which case the output video should
+             * be considered invalid.
              *
              * @see Open()
+             * @see Append(ImagePtr pImage)
              *
              */
             virtual void Close();
@@ -131,8 +128,7 @@ namespace Spinnaker
              */
             virtual void SetMaximumFileSize(unsigned int size);
 
-        private:
-
+          private:
             SpinVideo(const SpinVideo&);
             SpinVideo& operator=(const SpinVideo&);
 
@@ -144,7 +140,7 @@ namespace Spinnaker
         /*@}*/
 
         /*@}*/
-    }
-}
+    } // namespace Video
+} // namespace Spinnaker
 
 #endif // FLIR_SPIN_VIDEO_H

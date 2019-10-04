@@ -1,5 +1,5 @@
 //=============================================================================
-// Copyright © 2017 FLIR Integrated Imaging Solutions, Inc. All Rights Reserved.
+// Copyright (c) 2001-2019 FLIR Systems, Inc. All Rights Reserved.
 //
 // This software is the confidential and proprietary information of FLIR
 // Integrated Imaging Solutions, Inc. ("Confidential Information"). You
@@ -22,52 +22,52 @@
 
 namespace Spinnaker
 {
-	/**
-	 *  @defgroup SpinnakerEventClasses Spinnaker Event Classes
-	 */
+    /**
+     *  @defgroup SpinnakerEventClasses Spinnaker Event Classes
+     */
 
-	/*@{*/
-
-	/**
-	 *  @defgroup ImageEvent_h ImageEvent Class
-	 */
-
-	/*@{*/
+    /*@{*/
 
     /**
-    * @brief A handler for capturing image arrival events.
-    */
+     *  @defgroup ImageEvent_h ImageEvent Class
+     */
 
-	class SPINNAKER_API ImageEvent : public IImageEvent
-	{
-	public:
-		/**
-		* Default Constructor
-		*/
-		ImageEvent();
+    /*@{*/
 
-		/**
-		* Virtual Destructor
-		*/
-		virtual ~ImageEvent();
+    /**
+     * @brief A handler for capturing image arrival events.
+     */
 
-		/**
-		* Image event callback
-		*
-		* @param image The ImagePtr object
-		*/
-		virtual void OnImageEvent(ImagePtr image) = 0;
+    class SPINNAKER_API ImageEvent : public IImageEvent
+    {
+      public:
+        /**
+         * Default Constructor
+         */
+        ImageEvent();
 
-	protected:
-		/**
-		* Assignment operator.
-		*/
-		ImageEvent& operator=( const ImageEvent& );
-	};
+        /**
+         * Virtual Destructor
+         */
+        virtual ~ImageEvent();
 
-	/*@}*/
+        /**
+         * Image event callback
+         *
+         * @param image The ImagePtr object
+         */
+        virtual void OnImageEvent(ImagePtr image) = 0;
 
-	/*@}*/
-}
+      protected:
+        /**
+         * Assignment operator.
+         */
+        ImageEvent& operator=(const ImageEvent&);
+    };
+
+    /*@}*/
+
+    /*@}*/
+} // namespace Spinnaker
 
 #endif // PGR_SPINNAKER_IMAGEEVENT_H

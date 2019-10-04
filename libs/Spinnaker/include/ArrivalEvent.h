@@ -1,5 +1,5 @@
 //=============================================================================
-// Copyright © 2017 FLIR Integrated Imaging Solutions, Inc. All Rights Reserved.
+// Copyright (c) 2001-2019 FLIR Systems, Inc. All Rights Reserved.
 //
 // This software is the confidential and proprietary information of FLIR
 // Integrated Imaging Solutions, Inc. ("Confidential Information"). You
@@ -22,49 +22,49 @@
 
 namespace Spinnaker
 {
-	/**
-	 *  @defgroup SpinnakerEventClasses Spinnaker Event Classes
-	 */
+    /**
+     *  @defgroup SpinnakerEventClasses Spinnaker Event Classes
+     */
 
-	/*@{*/
+    /*@{*/
 
-	/**
-	 *  @defgroup ArrivalEvent_h ArrivalEvent Class
-	 */
+    /**
+     *  @defgroup ArrivalEvent_h ArrivalEvent Class
+     */
 
-	/*@{*/
-	
-	/**
-	 * @brief An event handler for capturing the device arrival event.
-	 */
-	class SPINNAKER_API  ArrivalEvent : public IArrivalEvent
-	{
-	public:
-		/**
-		* Default constructor.
-		*/
-		ArrivalEvent();
+    /*@{*/
 
-		/**
-		* Virtual destructor.
-		*/
-		virtual ~ArrivalEvent();
+    /**
+     * @brief An event handler for capturing the device arrival event.
+     */
+    class SPINNAKER_API ArrivalEvent : public IArrivalEvent
+    {
+      public:
+        /**
+         * Default constructor.
+         */
+        ArrivalEvent();
 
-		/**
-		* Callback to the device arrival event.		
-		*/
-		virtual void OnDeviceArrival(uint64_t serialNumber) = 0;
+        /**
+         * Virtual destructor.
+         */
+        virtual ~ArrivalEvent();
 
-	protected:
-		/**
-		* Assignment operator.
-		*/
-		ArrivalEvent& operator=( const ArrivalEvent& );
-	};
+        /**
+         * Callback to the device arrival event.
+         */
+        virtual void OnDeviceArrival(uint64_t serialNumber) = 0;
 
-	/*@}*/
+      protected:
+        /**
+         * Assignment operator.
+         */
+        ArrivalEvent& operator=(const ArrivalEvent&);
+    };
 
-	/*@}*/
-}
+    /*@}*/
+
+    /*@}*/
+} // namespace Spinnaker
 
 #endif // PGR_SPINNAKER_ARRIVALEVENT_H

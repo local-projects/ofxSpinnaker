@@ -1,5 +1,5 @@
 //=============================================================================
-// Copyright © 2017 FLIR Integrated Imaging Solutions, Inc. All Rights Reserved.
+// Copyright (c) 2001-2019 FLIR Systems, Inc. All Rights Reserved.
 //
 // This software is the confidential and proprietary information of FLIR
 // Integrated Imaging Solutions, Inc. ("Confidential Information"). You
@@ -23,56 +23,57 @@
 
 namespace Spinnaker
 {
-	class LoggingEventData;
+    class LoggingEventData;
 
-	/**
-	 *  @defgroup SpinnakerEventClasses Spinnaker Event Classes
-	 */
-	/*@{*/
+    /**
+     *  @defgroup SpinnakerEventClasses Spinnaker Event Classes
+     */
+    /*@{*/
 
-	/**
-	 *  @defgroup LoggingEventDataPtr_h LoggingEventDataPtr Class	 
-	 */
-	/*@{*/
+    /**
+     *  @defgroup LoggingEventDataPtr_h LoggingEventDataPtr Class
+     */
+    /*@{*/
 
     /**
      * @brief A reference tracked pointer to the LoggingEvent object.
      */
 
-	class SPINNAKER_API LoggingEventDataPtr : public BasePtr<LoggingEventData>
-	{
+    class SPINNAKER_API LoggingEventDataPtr : public BasePtr<LoggingEventData>
+    {
 
-	public:
-		/**
-		* Default Constructor
-		*/
-		LoggingEventDataPtr() throw()
-			: BasePtr<LoggingEventData>()
-		{
-		}
+      public:
+        /**
+         * Default Constructor
+         */
+        LoggingEventDataPtr() throw() : BasePtr<LoggingEventData>()
+        {
+        }
 
-		/**
-		* Default Constructor
-		*/
-		LoggingEventDataPtr(const int /*nMustBeNull*/) throw()
-			: BasePtr<LoggingEventData>()
-		{
-		}
+        /**
+         * Default Constructor with argument
+         */
+        LoggingEventDataPtr(const int /*nMustBeNull*/) throw() : BasePtr<LoggingEventData>()
+        {
+        }
 
-		/**
-		* Copy Constructor
-		*/
-		virtual LoggingEventDataPtr& operator=(const int nMustBeNull){ return dynamic_cast<LoggingEventDataPtr&>(BasePtr<LoggingEventData>::operator=(nMustBeNull)); };
+        /**
+         * Default Constructor with argument
+         */
+        LoggingEventDataPtr(const long /*nMustBeNull*/) throw() : BasePtr<LoggingEventData>()
+        {
+        }
 
-		/**
-		* Virtual Destructor
-		*/
-		virtual ~LoggingEventDataPtr(void){};
-		
-	};
+        /**
+         * Default Constructor with argument
+         */
+        LoggingEventDataPtr(const std::nullptr_t /*nullPtr*/) throw() : BasePtr<LoggingEventData>()
+        {
+        }
+    };
     /*@}*/
 
     /*@}*/
-}
+} // namespace Spinnaker
 
-#endif //PGR_LOGGINGEVENTDATAPTR_H
+#endif // PGR_LOGGINGEVENTDATAPTR_H

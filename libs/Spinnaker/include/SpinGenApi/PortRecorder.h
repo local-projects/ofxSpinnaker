@@ -1,5 +1,5 @@
 //=============================================================================
-// Copyright © 2017 FLIR Integrated Imaging Solutions, Inc. All Rights Reserved.
+// Copyright (c) 2001-2019 FLIR Systems, Inc. All Rights Reserved.
 //
 // This software is the confidential and proprietary information of FLIR
 // Integrated Imaging Solutions, Inc. ("Confidential Information"). You
@@ -26,67 +26,67 @@
 #include "PortReplay.h"
 #include "PortWriteList.h"
 
-#pragma warning ( push )
-#pragma warning ( disable : 4251 ) // XXX needs to have dll-interface to be used by clients of class YYY
+#pragma warning(push)
+#pragma warning(disable : 4251) // XXX needs to have dll-interface to be used by clients of class YYY
 
 namespace Spinnaker
 {
     namespace GenApi
     {
         /**
-        *  @defgroup SpinnakerGenApiClasses Spinnaker GenApi Classes
-        */
+         *  @defgroup SpinnakerGenApiClasses Spinnaker GenApi Classes
+         */
         /*@{*/
 
         /**
-        *  @defgroup PortRecorder_h PortRecorder  Class
-        */
+         *  @defgroup PortRecorder_h PortRecorder  Class
+         */
         /*@{*/
 
         /**
-        * @brief Interface for recording write commands on a port
-        */
+         * @brief Interface for recording write commands on a port
+         */
         class SPINNAKER_API PortRecorder : virtual public IPortRecorder, virtual public PortReplay
         {
-        public:
+          public:
             PortRecorder();
 
             virtual ~PortRecorder();
 
             /**
-            * starts logging all WriteRegister commands to a list
-            */
-            virtual void StartRecording(IPortWriteList *pPortRecorder);
+             * starts logging all WriteRegister commands to a list
+             */
+            virtual void StartRecording(IPortWriteList* pPortRecorder);
 
             /**
-            * stops recording
-            */
+             * stops recording
+             */
             virtual void StopRecording();
 
             /**
-            * Get the access mode of the node
-            */
+             * Get the access mode of the node
+             */
             virtual EAccessMode GetAccessMode() const;
 
             /**
-            * overload SetReference for Value
-            */
-            virtual void SetReference(IPort* pBase );
+             * overload SetReference for Value
+             */
+            virtual void SetReference(IPort* pBase);
 
-        private:
+          private:
             void* m_pPortRecorder;
         };
 
         /**
-        * Reference to an IPortRecorder pointer
-        */
+         * Reference to an IPortRecorder pointer
+         */
         typedef PortRecorder CPortRecorderRef;
 
         /*@}*/
         /*@}*/
-    }
-}
+    } // namespace GenApi
+} // namespace Spinnaker
 
-#pragma warning ( pop )
+#pragma warning(pop)
 
 #endif // ifndef SPINNAKER_GENAPI_IPORTRECORDER_H

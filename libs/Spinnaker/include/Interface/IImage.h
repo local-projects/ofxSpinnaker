@@ -1,5 +1,5 @@
 //=============================================================================
-// Copyright (c) 2001-2018 FLIR Systems, Inc. All Rights Reserved.
+// Copyright (c) 2001-2019 FLIR Systems, Inc. All Rights Reserved.
 //
 // This software is the confidential and proprietary information of FLIR
 // Integrated Imaging Solutions, Inc. ("Confidential Information"). You
@@ -25,6 +25,14 @@
 #include "SpinnakerDefs.h"
 #include "ChunkData.h"
 
+#ifdef _MSC_VER
+#pragma warning(push)
+#pragma warning(disable : 4996)
+#elif defined(__GNUC__)
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+#endif
+
 namespace Spinnaker
 {
     class ImageStatistics;
@@ -32,34 +40,56 @@ namespace Spinnaker
     enum PixelFormatEnums;
 
     /**
-    *  @defgroup SpinnakerClasses Spinnaker Classes
-    */
+     *  @defgroup SpinnakerClasses Spinnaker Classes
+     */
     /*@{*/
 
     /**
-    *  @defgroup IImage_h IImage Class
-    */
+     *  @defgroup IImage_h IImage Class
+     */
     /*@{*/
 
     /**
-    * @brief The interface file for Image.
-    */
+     * @brief The interface file for Image.
+     */
 
     class SPINNAKER_API IImage
     {
-    public:
-
-        virtual ~IImage() {};
+      public:
+        virtual ~IImage(){};
 
         virtual ColorProcessingAlgorithm GetColorProcessing() const = 0;
-        virtual ImagePtr Convert(Spinnaker::PixelFormatEnums format, ColorProcessingAlgorithm colorAlgorithm = DEFAULT) const = 0;
-        virtual ImagePtr ExtractPolarization(const PolarizationAlgorithm polarizationAlogrithm, const PolarizationResolution resolution) const = 0;
-        virtual void ResetImage(size_t width, size_t height, size_t offsetX, size_t offsetY, Spinnaker::PixelFormatEnums pixelFormat) = 0;
-        virtual void ResetImage(size_t width, size_t height, size_t offsetX, size_t offsetY, Spinnaker::PixelFormatEnums pixelFormat, void* pData) = 0;
+        virtual ImagePtr Convert(Spinnaker::PixelFormatEnums format, ColorProcessingAlgorithm colorAlgorithm = DEFAULT)
+            const = 0;
+        virtual void Convert(
+            ImagePtr destinationImage,
+            Spinnaker::PixelFormatEnums format,
+            ColorProcessingAlgorithm colorAlgorithm = DEFAULT) const = 0;
+        DEPRECATED_FUNC(
+            "This function has been deprecated. Please use more specific functions defined in the "
+            "ImageUtilityPolarization class.",
+            virtual ImagePtr ExtractPolarization(
+                const PolarizationAlgorithm polarizationAlogrithm,
+                const PolarizationResolution resolution) const) = 0;
+        virtual void ResetImage(
+            size_t width,
+            size_t height,
+            size_t offsetX,
+            size_t offsetY,
+            Spinnaker::PixelFormatEnums pixelFormat) = 0;
+        virtual void ResetImage(
+            size_t width,
+            size_t height,
+            size_t offsetX,
+            size_t offsetY,
+            Spinnaker::PixelFormatEnums pixelFormat,
+            void* pData) = 0;
         virtual void Release() = 0;
         virtual uint64_t GetID() const = 0;
         virtual void* GetData() const = 0;
         virtual void* GetPrivateData() const = 0;
+        virtual double GetDataAbsoluteMax() const = 0;
+        virtual double GetDataAbsoluteMin() const = 0;
         virtual size_t GetBufferSize() const = 0;
         virtual void DeepCopy(const ImagePtr pSrcImage) = 0;
         virtual size_t GetWidth() const = 0;
@@ -84,30 +114,42 @@ namespace Spinnaker
         virtual uint64_t GetChunkLayoutId() const = 0;
         virtual uint64_t GetTimeStamp() const = 0;
         virtual void Save(const char* pFilename, ImageFileFormat format = FROM_FILE_EXT) = 0;
-        virtual void Save(const char* pFilename, PNGOption & pOption) = 0;
-        virtual void Save(const char* pFilename, PPMOption & pOption) = 0;
-        virtual void Save(const char* pFilename, PGMOption & pOption) = 0;
-        virtual void Save(const char* pFilename, TIFFOption & pOption) = 0;
-        virtual void Save(const char* pFilename, JPEGOption & pOption) = 0;
-        virtual void Save(const char* pFilename, JPG2Option & pOption) = 0;
-        virtual void Save(const char* pFilename, BMPOption & pOption) = 0;
-        virtual const ChunkData & GetChunkData() const = 0;
+        virtual void Save(const char* pFilename, PNGOption& pOption) = 0;
+        virtual void Save(const char* pFilename, PPMOption& pOption) = 0;
+        virtual void Save(const char* pFilename, PGMOption& pOption) = 0;
+        virtual void Save(const char* pFilename, TIFFOption& pOption) = 0;
+        virtual void Save(const char* pFilename, JPEGOption& pOption) = 0;
+        virtual void Save(const char* pFilename, JPG2Option& pOption) = 0;
+        virtual void Save(const char* pFilename, BMPOption& pOption) = 0;
+        virtual const ChunkData& GetChunkData() const = 0;
         virtual void CalculateStatistics(ImageStatistics& pStatistics) = 0;
         virtual bool HasCRC() const = 0;
         virtual bool CheckCRC() const = 0;
         virtual size_t GetImageSize() const = 0;
         virtual bool IsInUse() = 0;
         virtual ImageStatus GetImageStatus() const = 0;
-        virtual float* GetPolarizationValues() const = 0;
-        virtual PolarizationAlgorithm GetPolarizationAlgorithm() const = 0;
+        DEPRECATED_FUNC(
+            "This function has been deprecated. Polarization images created through the ImageUtilityPolarization class "
+            "now use an appropriate pixel format to hold the raw polarization values.",
+            virtual float* GetPolarizationValues() const) = 0;
+        DEPRECATED_FUNC(
+            "This function has been deprecated. Polarization algorithms are applied through specific "
+            "functions defined in the ImageUtilityPolarization class.",
+            virtual PolarizationAlgorithm GetPolarizationAlgorithm() const) = 0;
 
-    protected:
-        IImage() {};
+      protected:
+        IImage(){};
     };
 
     /*@}*/
 
     /*@}*/
-}
+} // namespace Spinnaker
+
+#ifdef _MSC_VER
+#pragma warning(pop)
+#elif defined(__GNUC__)
+#pragma GCC diagnostic pop
+#endif
 
 #endif // FLIR_SPINNAKER_IIMAGE_H

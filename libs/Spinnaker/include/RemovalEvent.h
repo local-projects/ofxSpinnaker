@@ -1,5 +1,5 @@
 //=============================================================================
-// Copyright © 2017 FLIR Integrated Imaging Solutions, Inc. All Rights Reserved.
+// Copyright (c) 2001-2019 FLIR Systems, Inc. All Rights Reserved.
 //
 // This software is the confidential and proprietary information of FLIR
 // Integrated Imaging Solutions, Inc. ("Confidential Information"). You
@@ -22,52 +22,52 @@
 
 namespace Spinnaker
 {
-	/**
-	 * @defgroup SpinnakerEventClasses Spinnaker Event Classes
-	 */
+    /**
+     * @defgroup SpinnakerEventClasses Spinnaker Event Classes
+     */
 
-	/*@{*/
-
-	/**
-	 *  @defgroup RemovalEvent_h RemovalEvent Class
-	 */
-
-	/*@{*/
+    /*@{*/
 
     /**
-    * @brief An event handler for capturing the device removal event.
-    */
+     *  @defgroup RemovalEvent_h RemovalEvent Class
+     */
 
-	class SPINNAKER_API RemovalEvent : public IRemovalEvent
-	{
-	public:
-		/**
-		* Default Constructor
-		*/
-		RemovalEvent();
+    /*@{*/
 
-		/**
-		* Virtual Destructor
-		*/
-		virtual ~RemovalEvent();
+    /**
+     * @brief An event handler for capturing the device removal event.
+     */
 
-		/**
-		* Device removal event callback.
-		*
-		* @param serialNumber The serial number of the device removed
-		*/
-		virtual void OnDeviceRemoval(uint64_t serialNumber) = 0;
+    class SPINNAKER_API RemovalEvent : public IRemovalEvent
+    {
+      public:
+        /**
+         * Default Constructor
+         */
+        RemovalEvent();
 
-	protected:
-		/**
-		* Assignment operator.
-		*/
-		RemovalEvent& operator=( const RemovalEvent& );
-	};
+        /**
+         * Virtual Destructor
+         */
+        virtual ~RemovalEvent();
 
-	/*@}*/
+        /**
+         * Device removal event callback.
+         *
+         * @param serialNumber The serial number of the device removed
+         */
+        virtual void OnDeviceRemoval(uint64_t serialNumber) = 0;
 
-	/*@}*/
-}
+      protected:
+        /**
+         * Assignment operator.
+         */
+        RemovalEvent& operator=(const RemovalEvent&);
+    };
+
+    /*@}*/
+
+    /*@}*/
+} // namespace Spinnaker
 
 #endif // PGR_SPINNAKER_REMOVALEVENT_H

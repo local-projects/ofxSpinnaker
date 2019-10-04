@@ -1,5 +1,5 @@
 //=============================================================================
-// Copyright © 2017 FLIR Integrated Imaging Solutions, Inc. All Rights Reserved.
+// Copyright (c) 2001-2019 FLIR Systems, Inc. All Rights Reserved.
 //
 // This software is the confidential and proprietary information of FLIR
 // Integrated Imaging Solutions, Inc. ("Confidential Information"). You
@@ -25,58 +25,50 @@
 namespace Spinnaker
 {
     /**
-    *  @defgroup SpinnakerClasses Spinnaker Classes
-    */
+     *  @defgroup SpinnakerClasses Spinnaker Classes
+     */
 
     /*@{*/
 
     /**
-    *  @defgroup InterfacePtr_h InterfacePtr Class
-    */
+     *  @defgroup InterfacePtr_h InterfacePtr Class
+     */
 
     /*@{*/
 
     /**
-    * @brief A reference tracked pointer to the interface object.
-    */
+     * @brief A reference tracked pointer to the interface object.
+     */
 
     class SPINNAKER_API InterfacePtr : public BasePtr<IInterface>
     {
-    public:
+      public:
         /**
-        * Default Constructor
-        */
-        InterfacePtr() throw()
-            : BasePtr<IInterface>()
+         * Default Constructor
+         */
+        InterfacePtr() throw() : BasePtr<IInterface>()
         {
         }
 
         /**
-        * Default Constructor
-        */
-        InterfacePtr(const int /*nMustBeNull*/) throw()
-            : BasePtr<IInterface>()
+         * Default Constructor with argument
+         */
+        InterfacePtr(const int /*nMustBeNull*/) throw() : BasePtr<IInterface>()
         {
         }
 
-        /**
-        * Virtual Destructor
-        */
-        virtual ~InterfacePtr(void){};
-
-        /**
-        * Copy Constructor
-        */
-        virtual InterfacePtr& operator=(const int nMustBeNull)
+        InterfacePtr(const long /*nMustBeNull*/) throw() : BasePtr<IInterface>()
         {
-            return dynamic_cast<InterfacePtr&>(BasePtr<IInterface>::operator=(nMustBeNull));
-        };
-        
+        }
+
+        InterfacePtr(const std::nullptr_t /*nullPtr*/) throw() : BasePtr<IInterface>()
+        {
+        }
     };
 
     /*@}*/
 
     /*@}*/
-}
+} // namespace Spinnaker
 
-#endif //FLIR_SPINNAKER_INTERFACE_PTR_H
+#endif // FLIR_SPINNAKER_INTERFACE_PTR_H

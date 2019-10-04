@@ -1,5 +1,5 @@
 //=============================================================================
-// Copyright © 2018 FLIR Integrated Imaging Solutions, Inc. All Rights Reserved.
+// Copyright (c) 2001-2019 FLIR Systems, Inc. All Rights Reserved.
 //
 // This software is the confidential and proprietary information of FLIR
 // Integrated Imaging Solutions, Inc. ("Confidential Information"). You
@@ -26,16 +26,16 @@ namespace Spinnaker
     namespace Video
     {
         /**
-        *  @defgroup SpinnakerHeaders Spinnaker Headers
-        */
+         *  @defgroup SpinnakerHeaders Spinnaker Headers
+         */
 
         /*@{*/
 
         /**
-        * @defgroup SpinVideoDefs Spinnaker Video Definitions
-        *
-        * Definitions file for Spinnaker video recorder.
-        */
+         * @defgroup SpinVideoDefs Spinnaker Video Definitions
+         *
+         * Definitions file for Spinnaker video recorder.
+         */
 
         /** Options for saving MJPG files. */
         struct MJPGOption
@@ -103,7 +103,7 @@ namespace Spinnaker
         /*@}*/
 
         /*@}*/
-    }
-}
+    } // namespace Video
+} // namespace Spinnaker
 
 #endif // FLIR_SPIN_VIDEO_DEFS_H

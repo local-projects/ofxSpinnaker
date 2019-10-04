@@ -1,5 +1,5 @@
 //=============================================================================
-// Copyright © 2017 FLIR Integrated Imaging Solutions, Inc. All Rights Reserved.
+// Copyright (c) 2001-2019 FLIR Systems, Inc. All Rights Reserved.
 //
 // This software is the confidential and proprietary information of FLIR
 // Integrated Imaging Solutions, Inc. ("Confidential Information"). You
@@ -24,73 +24,72 @@
 
 namespace Spinnaker
 {
-	/**
-	 *  @defgroup SpinnakerEventClasses Spinnaker Event Classes
-	 */
-	/*@{*/
-
-	/**
-	 *  @defgroup Event_h Event Class
-	 */
-	 /*@{*/
+    /**
+     *  @defgroup SpinnakerEventClasses Spinnaker Event Classes
+     */
+    /*@{*/
 
     /**
-    * @brief The base class for all event types.
-    */
+     *  @defgroup Event_h Event Class
+     */
+    /*@{*/
 
-	class SPINNAKER_API Event
-	{
-	public:
+    /**
+     * @brief The base class for all event types.
+     */
 
-		/**
-		* Virtual Destructor
-		*/
-		virtual ~Event();
+    class SPINNAKER_API Event
+    {
+      public:
+        /**
+         * Virtual Destructor
+         */
+        virtual ~Event();
 
-		/**
-		* Sets the event type
-		*
-		* @param eventType The event type
-		*
-		*/
-		void SetEventType(EventType eventType);
+        /**
+         * Sets the event type
+         *
+         * @param eventType The event type
+         *
+         */
+        void SetEventType(EventType eventType);
 
-		/**
-		* Gets the event type
-		*
-		* @return The event type
-		*
-		*/
-		EventType GetEventType();
+        /**
+         * Gets the event type
+         *
+         * @return The event type
+         *
+         */
+        EventType GetEventType();
 
-		/**
-		* Gets the event payload data
-		*
-		* @return The event payload data
-		*/
-		const uint8_t* GetEventPayloadData();
+        /**
+         * Gets the event payload data
+         *
+         * @return The event payload data
+         */
+        const uint8_t* GetEventPayloadData();
 
-		/**
-		* Gets the event payload data size
-		*
-		* @return The event payload data size
-		*/
-		const size_t GetEventPayloadDataSize();
+        /**
+         * Gets the event payload data size
+         *
+         * @return The event payload data size
+         */
+        const size_t GetEventPayloadDataSize();
 
-	protected:
-		Event();
-		Event& operator=( const Event& );
-		friend class EventProcessor;
-		friend class IDataStream;
-		friend class Stream;
-		struct EventData;
-		EventData* m_pEventData;
-		void SetEventPayload(uint8_t* offset, size_t length);
-	};
+      protected:
+        Event();
+        Event& operator=(const Event&);
+        friend class EventProcessor;
+        friend class IDataStream;
+        friend class Stream;
+        struct EventData;
+        EventData* m_pEventData;
+        void SetEventPayload(uint8_t* offset, size_t length);
+    };
 
-	/*@}*/
+    /*@}*/
 
-	/*@}*/
-}
+    /*@}*/
+} // namespace Spinnaker
 
 #endif // PGR_SPINNAKER_EVENT_H

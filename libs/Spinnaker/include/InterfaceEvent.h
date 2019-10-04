@@ -1,5 +1,5 @@
 //=============================================================================
-// Copyright © 2017 FLIR Integrated Imaging Solutions, Inc. All Rights Reserved.
+// Copyright (c) 2001-2019 FLIR Systems, Inc. All Rights Reserved.
 //
 // This software is the confidential and proprietary information of FLIR
 // Integrated Imaging Solutions, Inc. ("Confidential Information"). You
@@ -22,54 +22,54 @@
 
 namespace Spinnaker
 {
-	/**
-	 * @defgroup SpinnakerEventClasses Spinnaker Event Classes
-	 */
-	/*@{*/
-
-	/**
-	 *  @defgroup InterfaceEvent_h InterfaceEvent Class
-	 */
-	/*@{*/
+    /**
+     * @defgroup SpinnakerEventClasses Spinnaker Event Classes
+     */
+    /*@{*/
 
     /**
-    * @brief A handler to device arrival and removal events on all interfaces.
-    */
+     *  @defgroup InterfaceEvent_h InterfaceEvent Class
+     */
+    /*@{*/
+
+    /**
+     * @brief A handler to device arrival and removal events on all interfaces.
+     */
 
     class SPINNAKER_API InterfaceEvent : public IInterfaceEvent
-	{
-	public:
-		/**
-		* Default constructor.
-		*/
-		InterfaceEvent();
+    {
+      public:
+        /**
+         * Default constructor.
+         */
+        InterfaceEvent();
 
-		/**
-		* Virtual destructor.
-		*/
-		virtual ~InterfaceEvent();
+        /**
+         * Virtual destructor.
+         */
+        virtual ~InterfaceEvent();
 
-		/**
-		* Device arrival event callback.
-		*/
-		virtual void OnDeviceArrival(uint64_t serialNumber) = 0;
+        /**
+         * Device arrival event callback.
+         */
+        virtual void OnDeviceArrival(uint64_t serialNumber) = 0;
 
-		/**
-		* Callback to the device removal event.
-		*
-		* @param serialNumber The serial number of the removed device
-		*/
-		virtual void OnDeviceRemoval(uint64_t serialNumber) = 0;
+        /**
+         * Callback to the device removal event.
+         *
+         * @param serialNumber The serial number of the removed device
+         */
+        virtual void OnDeviceRemoval(uint64_t serialNumber) = 0;
 
-	protected:
-		/**
-		* Assignment operator.
-		*/
-		InterfaceEvent& operator=( const InterfaceEvent& );
-	};
-	/*@}*/
+      protected:
+        /**
+         * Assignment operator.
+         */
+        InterfaceEvent& operator=(const InterfaceEvent&);
+    };
+    /*@}*/
 
-	/*@}*/
-}
+    /*@}*/
+} // namespace Spinnaker
 
 #endif // PGR_SPINNAKER_INTERFACEEVENT_H

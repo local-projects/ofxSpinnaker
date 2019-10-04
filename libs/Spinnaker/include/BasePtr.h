@@ -1,5 +1,5 @@
 //=============================================================================
-// Copyright © 2017 FLIR Integrated Imaging Solutions, Inc. All Rights Reserved.
+// Copyright (c) 2001-2019 FLIR Systems, Inc. All Rights Reserved.
 //
 // This software is the confidential and proprietary information of FLIR
 // Integrated Imaging Solutions, Inc. ("Confidential Information"). You
@@ -23,29 +23,27 @@
 namespace Spinnaker
 {
     /**
-    *  @defgroup SpinnakerClasses Spinnaker Classes
-    */
+     *  @defgroup SpinnakerClasses Spinnaker Classes
+     */
     /*@{*/
 
     /**
-    *  @defgroup BasePtr_h BasePtr Class
-    */
+     *  @defgroup BasePtr_h BasePtr Class
+     */
     /*@{*/
 
     /**
-    * @brief The base class of the SystemPtr, CameraPtr, InterfacePtr, ImagePtr and LoggingEventDataPtr objects.
-    */
-    
-    template<class T, class B = T >
-    class SPINNAKER_API BasePtr
+     * @brief The base class of the SystemPtr, CameraPtr, InterfacePtr, ImagePtr and LoggingEventDataPtr objects.
+     */
+    template <class T, class B = T> class SPINNAKER_API BasePtr
     {
-    public:
+      public:
         //! Default constructor.
         BasePtr(void) throw();
 
         virtual ~BasePtr(void);
 
-        //copy constructor
+        //! Copy constructor
         BasePtr(const BasePtr& other) throw();
 
         //! Assign INode Pointer
@@ -53,33 +51,38 @@ namespace Spinnaker
 
         virtual BasePtr& operator=(const int nMustBeNull);
 
-        //! Dereferencing
-        virtual operator T*(void) const;	
+        virtual BasePtr& operator=(const long nMustBeNull);
+
+        virtual BasePtr& operator=(const std::nullptr_t nullPtr);
 
         //! Dereferencing
-        virtual T* operator->(void) const;
-        
+        virtual operator T*(void)const;
+
+        //! Dereferencing
+        virtual T* operator->(void)const;
 
         //! True if the pointer is valid
         virtual bool IsValid() const throw();
-        
 
         //! True if the pointer is valid
         virtual operator bool(void) const throw();
-        
 
         //! Pointer equal
-        virtual bool operator==(const BasePtr &rT) const;
-        
+        virtual bool operator==(const BasePtr& rT) const;
+
+        //! Pointer equal
+        virtual bool operator==(std::nullptr_t) const;
 
         //! Pointer equal
         virtual bool operator==(int nMustBeNull) const;
-        
+
+        //! Pointer equal
+        virtual bool operator==(long nMustBeNull) const;
+
         //! get()
         virtual T* get() const;
 
-    protected:
-
+      protected:
         struct PointerData;
         //! Underlying raw pointer.
         PointerData* m_pT;
@@ -88,6 +91,5 @@ namespace Spinnaker
     /** @}*/
 
     /** @}*/
-}
-
-#endif //FLIR_SPINNAKER_BASE_PTR_H
+} // namespace Spinnaker
+#endif // FLIR_SPINNAKER_BASE_PTR_H

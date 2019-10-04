@@ -1,5 +1,5 @@
 //=============================================================================
-// Copyright © 2017 FLIR Integrated Imaging Solutions, Inc. All Rights Reserved.
+// Copyright (c) 2001-2019 FLIR Systems, Inc. All Rights Reserved.
 //
 // This software is the confidential and proprietary information of FLIR
 // Integrated Imaging Solutions, Inc. ("Confidential Information"). You
@@ -99,10 +99,34 @@ namespace Spinnaker
 		GenApi::IInteger &GevInterfaceSubnetMask;
 
 		/**
+		 * Description: Transmit link speed of this interface in bits per second.
+		 * Visibility: Expert
+		 */
+		GenApi::IInteger &GevInterfaceTransmitLinkSpeed;
+
+		/**
+		 * Description: Receive link speed of this interface in bits per second.
+		 * Visibility: Expert
+		 */
+		GenApi::IInteger &GevInterfaceReceiveLinkSpeed;
+
+		/**
+		 * Description: Maximum transmission unit of this interface.
+		 * Visibility: Expert
+		 */
+		GenApi::IInteger &GevInterfaceMTU;
+
+		/**
 		 * Description: Reports and controls the interface's power over Ethernet status.
 		 * Visibility: Expert
 		 */
 		GenApi::IEnumerationT<POEStatusEnum> &POEStatus;
+
+		/**
+		 * Description: Reports whether FLIR Light Weight Filter Driver is enabled or not.
+		 * Visibility: Expert
+		 */
+		GenApi::IEnumerationT<FilterDriverStatusEnum> &FilterDriverStatus;
 
 		/**
 		 * Description: Key to authorize the action for the device.
@@ -253,6 +277,24 @@ namespace Spinnaker
 		 * Visibility: Expert
 		 */
 		GenApi::IInteger &IncompatibleGevDeviceMACAddress;
+
+		/**
+		 * Description: User readable name of the interface's host adapter.
+		 * Visibility: Expert
+		 */
+		GenApi::IString &HostAdapterName;
+
+		/**
+		 * Description: User readable name of the host adapter's vendor.
+		 * Visibility: Expert
+		 */
+		GenApi::IString &HostAdapterVendor;
+
+		/**
+		 * Description: Driver version of the interface's host adapter.
+		 * Visibility: Expert
+		 */
+		GenApi::IString &HostAdapterDriverVersion;
 
 
 	protected:

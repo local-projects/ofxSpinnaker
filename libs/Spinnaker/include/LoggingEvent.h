@@ -1,5 +1,5 @@
 //=============================================================================
-// Copyright © 2017 FLIR Integrated Imaging Solutions, Inc. All Rights Reserved.
+// Copyright (c) 2001-2019 FLIR Systems, Inc. All Rights Reserved.
 //
 // This software is the confidential and proprietary information of FLIR
 // Integrated Imaging Solutions, Inc. ("Confidential Information"). You
@@ -23,54 +23,53 @@
 
 namespace Spinnaker
 {
-	class LoggingEventDataPtr;
+    class LoggingEventDataPtr;
 
-	/**
-	 *  @defgroup SpinnakerEventClasses Spinnaker Event Classes
-	 */
-	/*@{*/
+    /**
+     *  @defgroup SpinnakerEventClasses Spinnaker Event Classes
+     */
+    /*@{*/
 
-	/**
-	 *  @defgroup LoggingEvent_h LoggingEvent Class
-	 */
-	/*@{*/
+    /**
+     *  @defgroup LoggingEvent_h LoggingEvent Class
+     */
+    /*@{*/
 
     /**
      * @brief An event handler for capturing the device logging event.
      */
 
-	class SPINNAKER_API LoggingEvent : public ILoggingEvent
-	{
-	public:
+    class SPINNAKER_API LoggingEvent : public ILoggingEvent
+    {
+      public:
+        /**
+         * Default constructor.
+         */
+        LoggingEvent();
 
-		/**
-		* Default constructor.
-		*/
-		LoggingEvent();
+        /**
+         * Virtual destructor.
+         */
+        ~LoggingEvent();
 
-		/**
-		* Virtual destructor.
-		*/
-		~LoggingEvent();
+        /**
+         * The callback for the log event.
+         *
+         * @param eventPtr The logging event pointer
+         *
+         */
+        virtual void OnLogEvent(LoggingEventDataPtr eventPtr) = 0;
 
-		/**
-		* The callback for the log event.
-		*
-		* @param eventPtr The logging event pointer
-		*
-		*/
-		virtual void OnLogEvent(LoggingEventDataPtr eventPtr) = 0;
-
-	protected:
-		/**
-		* Assignment operator.
-		*/
-		LoggingEvent& operator=(const LoggingEvent&);
-	};
-
-    /*@}*/
+      protected:
+        /**
+         * Assignment operator.
+         */
+        LoggingEvent& operator=(const LoggingEvent&);
+    };
 
     /*@}*/
-}
+
+    /*@}*/
+} // namespace Spinnaker
 
 #endif // PGR_SPINNAKER_LOGGINGEvent_H

@@ -1,5 +1,5 @@
 //=============================================================================
-// Copyright © 2017 FLIR Integrated Imaging Solutions, Inc. All Rights Reserved.
+// Copyright (c) 2001-2019 FLIR Systems, Inc. All Rights Reserved.
 //
 // This software is the confidential and proprietary information of FLIR
 // Integrated Imaging Solutions, Inc. ("Confidential Information"). You
@@ -17,8 +17,8 @@
    
 /* Auto-generated file. Do not modify. */
 
-#ifndef PGR_SPINNAKER_QUICKSPINDEFS_C_H
-#define PGR_SPINNAKER_QUICKSPINDEFS_C_H
+#ifndef FLIR_SPINNAKER_QUICKSPINDEFS_C_H
+#define FLIR_SPINNAKER_QUICKSPINDEFS_C_H
 
 #include "SpinnakerGenApiDefsC.h"
 
@@ -699,6 +699,9 @@ typedef struct _quickSpin
     quickSpinCommandNode CxpPoCxpTurnOff;
     quickSpinCommandNode CxpPoCxpTripReset;
     quickSpinEnumerationNode CxpPoCxpStatus;
+    quickSpinIntegerNode ChunkInferenceResult;
+    quickSpinFloatNode ChunkInferenceConfidence;
+    quickSpinRegisterNode ChunkInferenceBoundingBoxResult;
 } quickSpin;
 
-#endif // PGR_SPINNAKER_QUICKSPINDEFS_C_H
+#endif // FLIR_SPINNAKER_QUICKSPINDEFS_C_H

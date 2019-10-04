@@ -1,5 +1,5 @@
 //=============================================================================
-// Copyright © 2017 FLIR Integrated Imaging Solutions, Inc. All Rights Reserved.
+// Copyright (c) 2001-2019 FLIR Systems, Inc. All Rights Reserved.
 //
 // This software is the confidential and proprietary information of FLIR
 // Integrated Imaging Solutions, Inc. ("Confidential Information"). You
@@ -26,15 +26,15 @@ namespace Spinnaker
 {
     class IImageEvent : public virtual Event
     {
-    public:
-        virtual ~IImageEvent() {};
+      public:
+        virtual ~IImageEvent(){};
         virtual void OnImageEvent(ImagePtr image) = 0;
 
-    protected:
-        IImageEvent() {};
-        IImageEvent(const IImageEvent&) {};
+      protected:
+        IImageEvent(){};
+        IImageEvent(const IImageEvent&){};
         IImageEvent& operator=(const IImageEvent&);
     };
-}
+} // namespace Spinnaker
 
 #endif /* PGR_SPINNAKER_IIMAGEEVENT_H */
