@@ -43,6 +43,7 @@ ofxSpinnaker::ofxSpinnaker()
 
 	pCam = NULL;
 
+    srcImage.setUseTexture(false);
 }
 
 //--------------------------------------------------------------
@@ -122,11 +123,7 @@ void ofxSpinnaker::setup(int index, int _width, int _height, int _offset_x, int 
 		pCam->OffsetY.SetValue(_offset_y);
 
 		// exposure
-		pCam->ExposureAuto.SetValue(ExposureAuto_Off);	// exposure set manually
-		pCam->ExposureTime.SetValue(DEFAULT_EXPOSURE);	// micro sec
-
-		// gain
-		pCam->GainAuto.SetValue(GainAuto_Off);	// for over 200fps
+		pCam->ExposureAuto.SetValue(ExposureAuto_Continuous);	// auto exposure
 
 		isCameraActive = true;
 	}
@@ -150,6 +147,7 @@ void ofxSpinnaker::update()
 	try
 	{
 		grabNewImage();
+		srcImage.setFromPixels(imageBuffer, width, height, OF_IMAGE_GRAYSCALE);
 	}
 	catch (Spinnaker::Exception &e)
 	{
@@ -161,11 +159,11 @@ void ofxSpinnaker::update()
 //--------------------------------------------------------------
 void ofxSpinnaker::exit()
 {
-	//pCam->EndAcquisition();
-	//cout << "end acquisition" << endl;
+	pCam->EndAcquisition();
+	cout << "end acquisition" << endl;
 
-	//// Release system
-	//system->ReleaseInstance();
+	// Release system
+	system->ReleaseInstance();
 }
 
 //--------------------------------------------------------------
@@ -174,12 +172,12 @@ void ofxSpinnaker::draw(int x, int y)
 	// Attempt to lock the mutex.  If blocking is turned on,
 	if (lock())
 	{
-		srcImage.setFromPixels(imageBuffer, width, height, OF_IMAGE_GRAYSCALE);
+		srcImage.setUseTexture(true);
 		srcImage.update();
 		srcImage.draw(x, y);
+		srcImage.setUseTexture(false);
 		unlock();
 	}
-	//ofSleepMillis(1);
 }
 
 //--------------------------------------------------------------
@@ -267,5 +265,13 @@ void ofxSpinnaker::setFrameRate(float fps)
 //--------------------------------------------------------------
 void ofxSpinnaker::setExposure(float exposure_ms)
 {
-	pCam->ExposureTime.SetValue(exposure_ms);
+	if (exposure_ms > 0)
+	{
+		pCam->ExposureAuto.SetValue(ExposureAuto_Off);
+		pCam->ExposureTime.SetValue(exposure_ms);
+	}
+	else
+	{
+		pCam->ExposureAuto.SetValue(ExposureAuto_Continuous);
+	}
 }

@@ -35,7 +35,7 @@ public:
 
 	// setter
 	void setFrameRate(float fps);
-	void setExposure(float exposure_ms);
+	void setExposure(float exposure_ms); // set to 0 for ExposureAuto_Continuous
 
 private:
 
